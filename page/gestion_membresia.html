@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuerpo Sano - Gestión de Membresías</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/img/logo.png" alt="Logo" />
+      <h1>Cuerpo <span>Sano</span></h1>
+    </div>
+    <nav>
+      <a href="/index.html">Dashboard</a>
+      <a href="/page/miembros.html">Miembros</a>
+      <a href="#" class="active">Membresías</a>
+      <a href="/page/clases.html">Clases</a>
+      <a href="/page/entrenadores.html">Entrenadores</a>
+      <a href="/page/reportes.html">Reportes</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="title-bar">
+      <div>
+        <h2>Gestión de Membresías</h2>
+        <p>Administra los tipos de membresía y sus beneficios</p>
+      </div>
+      <button class="btn add">+ Crear Nueva Membresía</button>
+    </section>
+
+    <section class="plans">
+      <div class="plan-card">
+        <h3>Membresía Mensual</h3>
+        <p class="price">$15,000</p>
+        <p class="valid">Válido por 30 días</p>
+        <ul>
+          <li>Acceso ilimitado al gimnasio</li>
+          <li>Uso de todas las máquinas</li>
+          <li>Vestuario y duchas</li>
+          <li>Wifi gratis</li>
+        </ul>
+        <button class="btn primary">Asignar Membresía</button>
+      </div>
+
+      <div class="plan-card highlight">
+        <div class="tag">Más Popular</div>
+        <h3>Membresía Anual</h3>
+        <p class="price">$150,000 <span class="old">$180,000</span></p>
+        <p class="valid">Válido por 12 meses</p>
+        <ul>
+          <li>Acceso ilimitado al gimnasio</li>
+          <li>Uso de todas las máquinas</li>
+          <li>Vestuario y duchas</li>
+          <li>Wifi gratis</li>
+          <li>Clase grupal incluida</li>
+          <li>Descuento en entrenamiento personal</li>
+          <li>2 meses gratis</li>
+        </ul>
+        <button class="btn primary">Asignar Membresía</button>
+      </div>
+    </section>
+
+    <section class="discounts">
+      <div class="discount-card">
+        <strong>20% Estudiantes:</strong> Requiere certificado de alumno regular
+      </div>
+      <div class="discount-card orange">
+        <strong>40% Adultos Mayores:</strong> Requiere documento que acredite la edad
+      </div>
+    </section>
+
+    <section class="memberships-table">
+      <h3>Membresías Activas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Miembro</th>
+            <th>Tipo</th>
+            <th>Vence</th>
+            <th>Monto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juan Pérez</td>
+            <td>Mensual</td>
+            <td>2025-11-25</td>
+            <td>$15,000</td>
+            <td><button class="btn small">Renovar</button></td>
+          </tr>
+          <tr>
+            <td>María González</td>
+            <td>Anual</td>
+            <td>2025-10-25</td>
+            <td>$150,000</td>
+            <td><button class="btn small">Renovar</button></td>
+          </tr>
+          <tr>
+            <td>Carlos López</td>
+            <td>Mensual</td>
+            <td>2025-11-23</td>
+            <td>$15,000</td>
+            <td><button class="btn small">Renovar</button></td>
+          </tr>
+          <tr>
+            <td>Ana Martínez</td>
+            <td>Mensual (Adulto Mayor)</td>
+            <td>2025-11-15</td>
+            <td>$9,000</td>
+            <td><button class="btn small">Renovar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
+  </footer>
+</body>
+</html>

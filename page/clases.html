@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuerpo Sano - Gestión de Clases</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/img/logo.png" alt="Logo" />
+      <h1>Cuerpo <span>Sano</span></h1>
+    </div>
+    <nav>
+      <a href="/index.html">Dashboard</a>
+      <a href="/page/miembros.html">Miembros</a>
+      <a href="/page/gestion_membresia.html">Membresías</a>
+      <a href="#" class="active">Clases</a>
+      <a href="/page/entrenadores.html">Entrenadores</a>
+      <a href="/page/reportes.html">Reportes</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    <section class="title-bar">
+      <div>
+        <h2>Gestión de Clases</h2>
+        <p>Administra los horarios y actividades del gimnasio</p>
+      </div>
+      <button class="btn add">+ Nueva Clase</button>
+    </section>
+
+    <section class="classes-grid">
+      <div class="class-card">
+        <div class="status available">Disponible</div>
+        <h3>Yoga Matutino</h3>
+        <p><strong>Instructor:</strong> Laura Fernández</p>
+        <p><strong>Horario:</strong> Lunes, Miércoles, Viernes</p>
+        <p><strong>Hora:</strong> 07:00 - 08:00 (60 min)</p>
+        <div class="capacity">
+          <span>15/20</span>
+          <div class="bar"><div class="fill blue" style="width:75%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="class-card">
+        <div class="status full">Completo</div>
+        <h3>Spinning</h3>
+        <p><strong>Instructor:</strong> Diego Montaño</p>
+        <p><strong>Horario:</strong> Martes, Jueves</p>
+        <p><strong>Hora:</strong> 18:00 - 19:00 (60 min)</p>
+        <div class="capacity">
+          <span>25/25</span>
+          <div class="bar"><div class="fill red" style="width:100%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="class-card">
+        <div class="status available">Disponible</div>
+        <h3>Zumba</h3>
+        <p><strong>Instructor:</strong> Carmen Silva</p>
+        <p><strong>Horario:</strong> Lunes, Miércoles, Viernes</p>
+        <p><strong>Hora:</strong> 19:00 - 20:00 (60 min)</p>
+        <div class="capacity">
+          <span>22/30</span>
+          <div class="bar"><div class="fill blue" style="width:70%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="class-card">
+        <div class="status available">Disponible</div>
+        <h3>CrossFit</h3>
+        <p><strong>Instructor:</strong> Facundo Insauralde</p>
+        <p><strong>Horario:</strong> Martes, Jueves, Sábado</p>
+        <p><strong>Hora:</strong> 17:00 - 18:30 (90 min)</p>
+        <div class="capacity">
+          <span>12/15</span>
+          <div class="bar"><div class="fill orange" style="width:80%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="class-card">
+        <div class="status available">Disponible</div>
+        <h3>Pilates</h3>
+        <p><strong>Instructor:</strong> Ana Martínez</p>
+        <p><strong>Horario:</strong> Lunes, Miércoles</p>
+        <p><strong>Hora:</strong> 10:00 - 11:00 (60 min)</p>
+        <div class="capacity">
+          <span>10/12</span>
+          <div class="bar"><div class="fill orange" style="width:85%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="class-card">
+        <div class="status available">Disponible</div>
+        <h3>Funcional</h3>
+        <p><strong>Instructor:</strong> Germán Arce</p>
+        <p><strong>Horario:</strong> Lunes a Viernes</p>
+        <p><strong>Hora:</strong> 06:00 - 07:00 (60 min)</p>
+        <div class="capacity">
+          <span>18/20</span>
+          <div class="bar"><div class="fill orange" style="width:90%;"></div></div>
+        </div>
+        <div class="actions">
+          <button class="btn">Editar</button>
+          <button class="btn primary">Ver Detalles</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
+  </footer>
