@@ -28,7 +28,7 @@
         <h2>Gestión de Miembros</h2>
         <p>Administra los miembros registrados en el gimnasio</p>
       </div>
-      <button class="btn add">+ Nuevo Miembro</button>
+      <button class="btn add" id="btn-abrir-modal-crear">+ Nuevo Miembro</button>
     </section>
 
     <section class="search-bar">
@@ -99,5 +99,136 @@
   <footer>
     <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
   </footer>
+<div id="modal-crear-miembro" class="modal-overlay hidden">
+  <div class="modal-content">
+    
+    <button id="btn-cerrar-modal-crear" class="modal-close-btn">&times;</button>
+    
+    <h2>Registrar Nuevo Miembro</h2>
+    <p>Completa los datos para añadir un nuevo miembro.</p>
+    
+    <form id="form-crear-miembro">
+      <div class="form-group">
+        <label for="input-nombre">Nombre(s)</label>
+        <input type="text" id="input-nombre" name="first_name" required>
+      </div>
+      <div class="form-group">
+        <label for="input-apellido">Apellido(s)</label>
+        <input type="text" id="input-apellido" name="last_name" required>
+      </div>
+      <div class="form-group">
+        <label for="input-email">Email</label>
+        <input type="email" id="input-email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="input-dni">DNI</label>
+        <input type="text" id="input-dni" name="dni" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="input-telefono">Teléfono</label>
+        <input type="tel" id="input-telefono" name="phone" required> </div>
+      
+      <div class="form-group">
+        <label for="input-address">Dirección</label>
+        <input type="text" id="input-address" name="address" required> </div>
+
+      <div class="form-group">
+        <label for="input-nacimiento">Fecha de Nacimiento</label>
+        <input type="date" id="input-nacimiento" name="date_of_birth" required> 
+      </div>
+
+
+      <div class="form-group">
+        <label for="input-discount-type">Tipo de Descuento</label>
+        <select id="input-discount-type" name="discount_type" required>
+          <option value="none">Ninguno</option>
+          <option value="student">Estudiante (20%)</option>
+          <option value="senior">Adulto Mayor (40%)</option>
+        </select>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" id="btn-cancelar-modal-crear" class="btn btn-cancel">Cancelar</button>
+        <button type="submit" class="btn btn-submit">Guardar Miembro</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="modal-editar-miembro" class="modal-overlay hidden">
+  <div class="modal-content">
+    
+    <button id="btn-cerrar-modal-edit" class="modal-close-btn">&times;</button>
+    
+    <h2>Editar Miembro</h2>
+    <p>Modifica los datos esenciales y la membresía del miembro.</p>
+    
+    <form id="form-editar-miembro">
+      <input type="hidden" id="edit-member-id" name="id">
+
+      <div class="form-group">
+        <label for="edit-input-nombre">Nombre(s)</label>
+        <input type="text" id="edit-input-nombre" name="first_name" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-input-apellido">Apellido(s)</label>
+        <input type="text" id="edit-input-apellido" name="last_name" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-input-email">Email</label>
+        <input type="email" id="edit-input-email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-input-dni">DNI</label>
+        <input type="text" id="edit-input-dni" name="dni" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit-input-telefono">Teléfono</label>
+        <input type="tel" id="edit-input-telefono" name="phone">
+      </div>
+      
+      <div class="form-group">
+        <label for="edit-input-address">Dirección</label>
+        <input type="text" id="edit-input-address" name="address" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit-input-member-type">Tipo de Membresía</label>
+        <select id="edit-input-member-type" name="member_type" required>
+          <option value="regular">Sin Membresía (Regular)</option>
+          <option value="premium">Mensual (Premium)</option>
+          <option value="vip">Anual (VIP)</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit-input-discount-type">Tipo de Descuento</label>
+        <select id="edit-input-discount-type" name="discount_type" required>
+          <option value="none">Ninguno</option>
+          <option value="student">Estudiante (20%)</option>
+          <option value="senior">Adulto Mayor (40%)</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit-input-nacimiento">Fecha de Nacimiento</label>
+        <input type="date" id="edit-input-nacimiento" name="date_of_birth" required>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" id="btn-cancelar-modal-edit" class="btn btn-cancel">Cancelar</button>
+        <button type="submit" class="btn btn-submit">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
+  
+
+  
+  <script src="/js/miembros.js" defer></script>
+
 </body>
 </html>
