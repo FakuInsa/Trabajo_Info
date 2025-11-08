@@ -244,49 +244,62 @@ function setupEditModalToggles() {
 
 
 // --- TAREA 5: Conectar el formulario EDITAR a la API ---
-function setupEditFormSubmitListener() {
-    const form = document.getElementById('form-editar-miembro');
+function setupCreateFormSubmitListener() {
+    const form = document.getElementById('form-crear-miembro');
     if (!form) return;
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const memberId = document.getElementById('edit-member-id').value;
-        if (!memberId) {
-            alert('Error: No se encontró el ID del miembro.');
-            return;
-        }
-
         const formData = new FormData(form);
-        const memberData = {
-            first_name: formData.get('first_name'),
-            last_name: formData.get('last_name'),
-            email: formData.get('email'),
-            dni: formData.get('dni'),
-            phone: formData.get('phone'),
-            address: formData.get('address'),
-            date_of_birth: formData.get('date_of_birth'),
-            member_type: formData.get('member_type'), 
-            discount_type: formData.get('discount_type') 
+
+        // Helper: intenta FormData y si falla hace fallback por id o por name
+        const getField = (name, idFallback) => {
+            let v = formData.get(name);
+            if (v === null || v === undefined) {
+                const elById = idFallback ? document.getElementById(idFallback) : null;
+                const elByName = document.querySelector(`[name="${name}"]`);
+                const el = elById || elByName;
+                v = el ? el.value : '';
+            }
+            return typeof v === 'string' ? v.trim() : v;
         };
-        
+
+        const memberData = {
+            first_name: getField('first_name', 'input-nombre'),
+            last_name: getField('last_name', 'input-apellido'),
+            email: getField('email', 'input-email'),
+            dni: getField('dni', 'input-dni'),
+            phone: getField('phone', 'input-telefono'),
+            address: getField('address', 'input-address'),
+            date_of_birth: getField('date_of_birth', 'input-nacimiento'),
+            discount_type: getField('discount_type', 'input-discount-type'),
+
+            // Valores fijos
+            member_type: "regular",
+            status: "inactive"
+        };
+
+        // Depuración: ver qué se va a enviar
+        console.log('Creando miembro - datos enviados:', memberData);
+
         try {
-            const respuesta = await fetch(`${API_BASE_URL}/members/${memberId}`, {
-                method: 'PUT',
+            const respuesta = await fetch(`${API_BASE_URL}/members`, {
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(memberData)
             });
-
             const respuestaApi = await respuesta.json();
             if (!respuesta.ok || !respuestaApi.success) {
                 throw new Error(respuestaApi.message || 'Error del servidor');
             }
+            form.reset();
+            document.getElementById('modal-crear-miembro').classList.add('hidden');
 
-            document.getElementById('modal-editar-miembro').classList.add('hidden');
-            cargarMiembrosGrid(); 
-
+            // Actualizamos la lista después de crear
+            cargarMiembrosGrid();
         } catch (error) {
-            console.error('Error al actualizar miembro:', error);
-            alert(`Error al actualizar miembro: ${error.message}`);
+            console.error('Error al crear miembro:', error);
+            alert(`Error al crear miembro: ${error.message}`);
         }
     });
 }
