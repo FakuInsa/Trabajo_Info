@@ -19,6 +19,7 @@
       <a href="#" class="active">Clases</a>
       <a href="/page/entrenadores.html">Entrenadores</a>
       <a href="/page/reportes.html">Reportes</a>
+      <a href="/page/actividades.html">Actividades</a>
     </nav>
   </header>
 
@@ -56,6 +57,10 @@
         </div>
 
         <div class="form-group">
+          <label for="input-instructor">Entrenador (ID Opcional)</label>
+          <input type="number" id="input-instructor" name="instructor_id" placeholder="ID del entrenador (Ej. 1)">
+        </div>
+        <div class="form-group">
           <label for="input-dia">Día de la Semana</label>
           <select id="input-dia" name="day_of_week" required>
             <option value="monday">Lunes</option>
@@ -91,6 +96,70 @@
         <div class="form-actions">
           <button type="button" id="btn-cancelar-modal-clase" class="btn btn-cancel">Cancelar</button>
           <button type="submit" class="btn btn-submit">Programar Clase</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+
+  <div id="modal-editar-clase" class="modal-overlay hidden">
+    <div class="modal-content">
+      
+      <button id="btn-cerrar-modal-editar-clase" class="modal-close-btn">&times;</button>
+      
+      <h2>Editar Clase Programada</h2>
+      <p>Modifica los detalles de esta clase.</p>
+      
+      <form id="form-editar-clase">
+        <input type="hidden" id="edit-schedule-id" name="id">
+
+        <div class="form-group">
+          <label for="edit-input-actividad">Actividad (ID)</label>
+          <input type="number" id="edit-input-actividad" name="activity_id" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-input-instructor">Entrenador (ID Opcional)</label>
+          <input type="number" id="edit-input-instructor" name="instructor_id" placeholder="ID del entrenador">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-input-dia">Día de la Semana</label>
+          <select id="edit-input-dia" name="day_of_week" required>
+            <option value="monday">Lunes</option>
+            <option value="tuesday">Martes</option>
+            <option value="wednesday">Miércoles</option>
+            <option value="thursday">Jueves</option>
+            <option value="friday">Viernes</option>
+            <option value="saturday">Sábado</option>
+            <option value="sunday">Domingo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-input-hora">Hora de Inicio</label>
+          <input type="time" id="edit-input-hora" name="start_time" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-input-duracion">Duración (minutos)</label>
+          <input type="number" id="edit-input-duracion" name="duration_minutes" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edit-input-capacidad">Capacidad Máxima</label>
+          <input type="number" id="edit-input-capacidad" name="max_capacity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-input-salon">Salón/Ubicación</label>
+          <input type="text" id="edit-input-salon" name="room" required>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-editar-clase" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Guardar Cambios</button>
         </div>
       </form>
       

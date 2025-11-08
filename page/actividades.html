@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuerpo Sano - Gestión de Actividades</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/img/logo.png" alt="Logo" />
+      <h1>Cuerpo <span>Sano</span></h1>
+    </div>
+    <nav>
+      <a href="/index.html">Dashboard</a>
+      <a href="/page/miembros.html">Miembros</a>
+      <a href="/page/gestion_membresia.html">Membresías</a>
+      <a href="/page/clases.html">Clases</a>
+      <a href="/page/actividades.html" class="active">Actividades</a> 
+      <a href="/page/entrenadores.html">Entrenadores</a>
+      <a href="/page/reportes.html">Reportes</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    <section class="title-bar">
+      <div>
+        <h2>Gestión de Actividades</h2>
+        <p>Define los tipos de clases que ofrece el gimnasio (Ej. Yoga, Spinning, Boxeo)</p>
+      </div>
+      <div>
+        <button class="btn" id="btn-imprimir-actividades">Imprimir Lista</button>
+        <button class="btn add" id="btn-abrir-modal-crear-actividad">+ Nueva Actividad</button>
+      </div>
+    </section>
+
+    <section class="classes-grid" id="actividades-contenedor">
+      <p>Cargando actividades...</p>
+      
+      </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
+  </footer>
+
+  <div id="modal-crear-actividad" class="modal-overlay hidden">
+    <div class="modal-content">
+      
+      <button id="btn-cerrar-modal-actividad" class="modal-close-btn">&times;</button>
+      
+      <h2>Crear Nueva Actividad</h2>
+      <p>Define una nueva disciplina o clase que se ofrecerá.</p>
+      
+      <form id="form-crear-actividad">
+        
+        <div class="form-group">
+          <label for="input-nombre">Nombre de la Actividad</label>
+          <input type="text" id="input-nombre" name="name" required placeholder="Ej. Yoga Vinyasa">
+        </div>
+
+        <div class="form-group">
+          <label for="input-descripcion">Descripción</label>
+          <textarea id="input-descripcion" name="description" rows="4" placeholder="Una breve descripción de la actividad..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="input-intensidad">Nivel de Intensidad</label>
+          <select id="input-intensidad" name="intensity_level">
+            <option value="low">Baja</option>
+            <option value="medium" selected>Media</option>
+            <option value="high">Alta</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-actividad" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Crear Actividad</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <div id="modal-editar-actividad" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button id="btn-cerrar-modal-editar" class="modal-close-btn">&times;</button>
+      <h2>Editar Actividad</h2>
+      <form id="form-editar-actividad">
+        <input type="hidden" id="edit-activity-id" name="id">
+        <div class="form-group">
+          <label for="edit-input-nombre">Nombre de la Actividad</label>
+          <input type="text" id="edit-input-nombre" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-input-descripcion">Descripción</label>
+          <textarea id="edit-input-descripcion" name="description" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-input-intensidad">Nivel de Intensidad</label>
+          <select id="edit-input-intensidad" name="intensity_level">
+            <option value="low">Baja</option>
+            <option value="medium">Media</option>
+            <option value="high">Alta</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-editar" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/actividades.js" defer></script>
+</body>
+</html>
