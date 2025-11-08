@@ -29,108 +29,73 @@
         <h2>Gestión de Clases</h2>
         <p>Administra los horarios y actividades del gimnasio</p>
       </div>
-      <button class="btn add">+ Nueva Clase</button>
+      <button class="btn add" id="btn-abrir-modal-crear-clase">+ Nueva Clase</button>
     </section>
 
-    <section class="classes-grid">
-      <div class="class-card">
-        <div class="status available">Disponible</div>
-        <h3>Yoga Matutino</h3>
-        <p><strong>Instructor:</strong> Laura Fernández</p>
-        <p><strong>Horario:</strong> Lunes, Miércoles, Viernes</p>
-        <p><strong>Hora:</strong> 07:00 - 08:00 (60 min)</p>
-        <div class="capacity">
-          <span>15/20</span>
-          <div class="bar"><div class="fill blue" style="width:75%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="class-card">
-        <div class="status full">Completo</div>
-        <h3>Spinning</h3>
-        <p><strong>Instructor:</strong> Diego Montaño</p>
-        <p><strong>Horario:</strong> Martes, Jueves</p>
-        <p><strong>Hora:</strong> 18:00 - 19:00 (60 min)</p>
-        <div class="capacity">
-          <span>25/25</span>
-          <div class="bar"><div class="fill red" style="width:100%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="class-card">
-        <div class="status available">Disponible</div>
-        <h3>Zumba</h3>
-        <p><strong>Instructor:</strong> Carmen Silva</p>
-        <p><strong>Horario:</strong> Lunes, Miércoles, Viernes</p>
-        <p><strong>Hora:</strong> 19:00 - 20:00 (60 min)</p>
-        <div class="capacity">
-          <span>22/30</span>
-          <div class="bar"><div class="fill blue" style="width:70%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="class-card">
-        <div class="status available">Disponible</div>
-        <h3>CrossFit</h3>
-        <p><strong>Instructor:</strong> Facundo Insauralde</p>
-        <p><strong>Horario:</strong> Martes, Jueves, Sábado</p>
-        <p><strong>Hora:</strong> 17:00 - 18:30 (90 min)</p>
-        <div class="capacity">
-          <span>12/15</span>
-          <div class="bar"><div class="fill orange" style="width:80%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="class-card">
-        <div class="status available">Disponible</div>
-        <h3>Pilates</h3>
-        <p><strong>Instructor:</strong> Ana Martínez</p>
-        <p><strong>Horario:</strong> Lunes, Miércoles</p>
-        <p><strong>Hora:</strong> 10:00 - 11:00 (60 min)</p>
-        <div class="capacity">
-          <span>10/12</span>
-          <div class="bar"><div class="fill orange" style="width:85%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="class-card">
-        <div class="status available">Disponible</div>
-        <h3>Funcional</h3>
-        <p><strong>Instructor:</strong> Germán Arce</p>
-        <p><strong>Horario:</strong> Lunes a Viernes</p>
-        <p><strong>Hora:</strong> 06:00 - 07:00 (60 min)</p>
-        <div class="capacity">
-          <span>18/20</span>
-          <div class="bar"><div class="fill orange" style="width:90%;"></div></div>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Detalles</button>
-        </div>
-      </div>
+    <section class="classes-grid" id="clases-contenedor">
+      <p>Cargando clases...</p>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
   </footer>
+
+  <div id="modal-crear-clase" class="modal-overlay hidden">
+    <div class="modal-content">
+      
+      <button id="btn-cerrar-modal-clase" class="modal-close-btn">&times;</button>
+      
+      <h2>Programar Nueva Clase</h2>
+      <p>Asigna un horario para una actividad existente.</p>
+      
+      <form id="form-crear-clase">
+        <div class="form-group">
+          <label for="input-actividad">Actividad (ID)</label>
+          <input type="number" id="input-actividad" name="activity_id" required placeholder="ID de actividad (Ej. 1 para Yoga)">
+        </div>
+
+        <div class="form-group">
+          <label for="input-dia">Día de la Semana</label>
+          <select id="input-dia" name="day_of_week" required>
+            <option value="monday">Lunes</option>
+            <option value="tuesday">Martes</option>
+            <option value="wednesday">Miércoles</option>
+            <option value="thursday">Jueves</option>
+            <option value="friday">Viernes</option>
+            <option value="saturday">Sábado</option>
+            <option value="sunday">Domingo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-hora">Hora de Inicio</label>
+          <input type="time" id="input-hora" name="start_time" required>
+        </div>
+
+        <div class="form-group">
+          <label for="input-duracion">Duración (minutos)</label>
+          <input type="number" id="input-duracion" name="duration_minutes" required placeholder="Ej. 60">
+        </div>
+        
+        <div class="form-group">
+          <label for="input-capacidad">Capacidad Máxima</label>
+          <input type="number" id="input-capacidad" name="max_capacity" required placeholder="Ej. 20">
+        </div>
+
+        <div class="form-group">
+          <label for="input-salon">Salón/Ubicación</label>
+          <input type="text" id="input-salon" name="room" required placeholder="Ej. Sala A">
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-clase" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Programar Clase</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  <script src="/js/clases.js" defer></script>
+</body>
+</html>

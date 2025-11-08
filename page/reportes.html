@@ -31,16 +31,16 @@
       <button class="btn add">📊 Exportar Reporte</button>
     </section>
 
-    <section class="summary">
-      <div class="card blue">
+    <section class="stats">
+      <div class="stat-card orange">
         <h3>Ingresos del Mes</h3>
-        <p class="value">$45,670</p>
-        <small>+8% vs mes anterior</small>
+        <p class="value" id="report-ingresos-mes">$0</p>
+        <small>Membresías cobradas este mes</small>
       </div>
-      <div class="card orange">
+      <div class="stat-card blue">
         <h3>Nuevos Miembros</h3>
-        <p class="value">23</p>
-        <small>+15% este mes</small>
+        <p class="value" id="report-nuevos-miembros">0</p>
+        <small>Registrados este mes</small>
       </div>
       <div class="card white">
         <h3>Tasa de Asistencia</h3>
@@ -104,5 +104,9 @@
   <footer>
     <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
   </footer>
+<script src="/js/reportes.js" defer></script>
+
+
+
 </body>
 </html>

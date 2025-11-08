@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,91 +28,47 @@
         <h2>Gestión de Membresías</h2>
         <p>Administra los tipos de membresía y sus beneficios</p>
       </div>
-      <button class="btn add">+ Crear Nueva Membresía</button>
+      <button class="btn add" id="btn-abrir-modal-crear-tipo">+ Crear Nuevo Tipo</button>
     </section>
 
     <section class="plans">
       <div class="plan-card">
         <h3>Membresía Mensual</h3>
         <p class="price">$15,000</p>
-        <p class="valid">Válido por 30 días</p>
-        <ul>
-          <li>Acceso ilimitado al gimnasio</li>
-          <li>Uso de todas las máquinas</li>
-          <li>Vestuario y duchas</li>
-          <li>Wifi gratis</li>
-        </ul>
-        <button class="btn primary">Asignar Membresía</button>
+        <p>Acceso completo por 30 días.</p>
+        <button class="btn primary btn-asignar-plan" data-type="monthly" data-price="15000">Asignar Plan</button>
       </div>
-
+      
       <div class="plan-card highlight">
         <div class="tag">Más Popular</div>
         <h3>Membresía Anual</h3>
-        <p class="price">$150,000 <span class="old">$180,000</span></p>
-        <p class="valid">Válido por 12 meses</p>
-        <ul>
-          <li>Acceso ilimitado al gimnasio</li>
-          <li>Uso de todas las máquinas</li>
-          <li>Vestuario y duchas</li>
-          <li>Wifi gratis</li>
-          <li>Clase grupal incluida</li>
-          <li>Descuento en entrenamiento personal</li>
-          <li>2 meses gratis</li>
-        </ul>
-        <button class="btn primary">Asignar Membresía</button>
+        <p class="price">$150,000</p>
+        <p>Máximo ahorro. Incluye clase personal.</p>
+        <button class="btn primary btn-asignar-plan" data-type="annual" data-price="150000">Asignar Plan</button>
       </div>
-    </section>
 
-    <section class="discounts">
-      <div class="discount-card">
-        <strong>20% Estudiantes:</strong> Requiere certificado de alumno regular
-      </div>
-      <div class="discount-card orange">
-        <strong>40% Adultos Mayores:</strong> Requiere documento que acredite la edad
+      <div class="plan-card">
+        <h3>Membresía Trimestral</h3>
+        <p class="price">$40,000</p>
+        <p>Ahorro de $5,000. Acceso por 90 días.</p>
+        <button class="btn primary btn-asignar-plan" data-type="quarterly" data-price="40000">Asignar Plan</button>
       </div>
     </section>
 
     <section class="memberships-table">
-      <h3>Membresías Activas</h3>
+      <h3>Lista de Membresías Asignadas</h3>
       <table>
         <thead>
           <tr>
-            <th>Miembro</th>
+            <th>Miembro (ID)</th>
             <th>Tipo</th>
             <th>Vence</th>
             <th>Monto</th>
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Juan Pérez</td>
-            <td>Mensual</td>
-            <td>2025-11-25</td>
-            <td>$15,000</td>
-            <td><button class="btn small">Renovar</button></td>
-          </tr>
-          <tr>
-            <td>María González</td>
-            <td>Anual</td>
-            <td>2025-10-25</td>
-            <td>$150,000</td>
-            <td><button class="btn small">Renovar</button></td>
-          </tr>
-          <tr>
-            <td>Carlos López</td>
-            <td>Mensual</td>
-            <td>2025-11-23</td>
-            <td>$15,000</td>
-            <td><button class="btn small">Renovar</button></td>
-          </tr>
-          <tr>
-            <td>Ana Martínez</td>
-            <td>Mensual (Adulto Mayor)</td>
-            <td>2025-11-15</td>
-            <td>$9,000</td>
-            <td><button class="btn small">Renovar</button></td>
-          </tr>
+        <tbody id="membresias-list">
+          <tr><td colspan="5">Cargando membresías...</td></tr>
         </tbody>
       </table>
     </section>
@@ -122,5 +77,119 @@
   <footer>
     <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
   </footer>
+
+  <div id="modal-asignar-membresia" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button id="btn-cerrar-modal-asignar" class="modal-close-btn">&times;</button>
+        <h2>Asignar Membresía a Miembro</h2>
+        <p>Busca un miembro y registra su pago de membresía.</p>
+        
+        <form id="form-asignar-membresia">
+            
+            <div class="form-group">
+                <label for="input-membership-type">Tipo de Plan</label>
+                <select id="input-membership-type" name="membership_type" required>
+                    <option value="">Selecciona un tipo</option>
+                    <option value="monthly">Mensual</option>
+                    <option value="quarterly">Trimestral</option>
+                    <option value="semiannual">Semianual</option>
+                    <option value="annual">Anual</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="input-member-id">Miembro (ID)</label>
+                <input type="number" id="input-member-id" name="member_id" required placeholder="Ingresa el ID del miembro para ver descuentos">
+            </div>
+
+            <div id="descuento-info" style="margin-bottom: 15px; color: var(--blue); font-weight: bold;">
+                Ingrese un ID de miembro válido.
+            </div>
+            
+            <div class="form-group">
+                <label for="input-price">Monto Final</label>
+                <input type="number" step="0.01" id="input-price" name="price" required 
+                       placeholder="Calculado automáticamente..." readonly>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" id="btn-cancelar-modal-asignar" class="btn btn-cancel">Cancelar</button>
+                <button type="submit" class="btn btn-submit">Asignar y Registrar Pago</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <div id="modal-crear-tipo" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button id="btn-cerrar-modal-tipo" class="modal-close-btn">&times;</button>
+        <h2>Crear Nuevo Plan de Membresía</h2>
+        <p>Define un nuevo tipo de plan (ej. Quincenal).</p>
+        
+        <form id="form-crear-tipo">
+            <div class="form-group">
+                <label for="tipo-plan">Nombre del Plan (ID)</label>
+                <input type="text" id="tipo-plan" name="membership_type" required placeholder="Ej: quincenal (sin espacios)"> 
+            </div>
+            <div class="form-group">
+                <label for="precio-base">Precio Base</label>
+                <input type="number" step="0.01" id="precio-base" name="price" required placeholder="Ej: 8000.00">
+            </div>
+            <div class="form-group">
+                <label for="duracion-dias">Duración (en días)</label>
+                <input type="number" id="duracion-dias" name="duration" required placeholder="Ej: 15 o 90">
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" id="btn-cancelar-modal-tipo" class="btn btn-cancel">Cancelar</button>
+                <button type="submit" class="btn btn-submit">Crear Plan</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <div id="modal-editar-asignacion" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button id="btn-cerrar-modal-edit-asig" class="modal-close-btn">&times;</button>
+        <h2>Editar Asignación de Membresía</h2>
+        <p>Modifica los detalles de esta asignación específica.</p>
+        
+        <form id="form-editar-asignacion">
+            <input type="hidden" id="edit-asignacion-id" name="id">
+            
+            <div class="form-group">
+                <label for="edit-asig-member-id">Miembro (ID)</label>
+                <input type="number" id="edit-asig-member-id" name="member_id" readonly disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-asig-type">Tipo de Plan</label>
+                <select id="edit-asig-type" name="membership_type" required>
+                    <option value="monthly">Mensual</option>
+                    <option value="quarterly">Trimestral</option>
+                    <option value="semiannual">Semianual</option>
+                    <option value="annual">Anual</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-asig-price">Monto Final</label>
+                <input type="number" step="0.01" id="edit-asig-price" name="price" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-asig-end-date">Fecha de Vencimiento</glabel>
+                <input type="date" id="edit-asig-end-date" name="end_date" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" id="btn-cancelar-modal-edit-asig" class="btn btn-cancel">Cancelar</button>
+                <button type="submit" class="btn btn-submit">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <script src="/js/membresias.js" defer></script>
 </body>
 </html>

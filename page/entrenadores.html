@@ -26,82 +26,160 @@
     <section class="title-bar">
       <div>
         <h2>Gestión de Entrenadores</h2>
-        <p>Administra el equipo de profesionales del gimnasio</p>
+        <p>Administra el personal y sus especialidades</p>
       </div>
-      <button class="btn add">+ Nuevo Entrenador</button>
+      <button class="btn add" id="btn-abrir-modal-crear-trainer">+ Nuevo Entrenador</button>
     </section>
 
-    <section class="trainers-grid">
-      <!-- Entrenador 1 -->
-      <div class="trainer-card">
-        <div class="avatar">GA</div>
-        <h3>Germán Arce <span class="rating">★ 4.9</span></h3>
-        <p><strong>Certificación:</strong> Personal Trainer Certificado ISSA</p>
-        <p><strong>Experiencia:</strong> 5 años</p>
-        <p><strong>Alumnos Activos:</strong> 15 miembros</p>
-        <div class="specialties">
-          <strong>Especialidades:</strong>
-          <span class="tag blue">Funcional</span>
-          <span class="tag orange">CrossFit</span>
-        </div>
-        <div class="classes">
-          <strong>Clases Asignadas:</strong>
-          <span class="tag blue">Funcional</span>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Perfil</button>
-        </div>
-      </div>
-
-      <!-- Entrenador 2 -->
-      <div class="trainer-card">
-        <div class="avatar">DM</div>
-        <h3>Diego Montaño <span class="rating">★ 4.8</span></h3>
-        <p><strong>Certificación:</strong> Instructor de Spinning Certificado</p>
-        <p><strong>Experiencia:</strong> 3 años</p>
-        <p><strong>Alumnos Activos:</strong> 25 miembros</p>
-        <div class="specialties">
-          <strong>Especialidades:</strong>
-          <span class="tag orange">Spinning</span>
-          <span class="tag red">Cardio</span>
-        </div>
-        <div class="classes">
-          <strong>Clases Asignadas:</strong>
-          <span class="tag orange">Spinning</span>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Perfil</button>
-        </div>
-      </div>
-
-      <!-- Entrenador 3 -->
-      <div class="trainer-card">
-        <div class="avatar">FI</div>
-        <h3>Facundo Insauralde <span class="rating">★ 4.9</span></h3>
-        <p><strong>Certificación:</strong> Crossfit Level 2 Trainer</p>
-        <p><strong>Experiencia:</strong> 4 años</p>
-        <p><strong>Alumnos Activos:</strong> 12 miembros</p>
-        <div class="specialties">
-          <strong>Especialidades:</strong>
-          <span class="tag orange">CrossFit</span>
-          <span class="tag blue">Funcional</span>
-        </div>
-        <div class="classes">
-          <strong>Clases Asignadas:</strong>
-          <span class="tag orange">CrossFit</span>
-        </div>
-        <div class="actions">
-          <button class="btn">Editar</button>
-          <button class="btn primary">Ver Perfil</button>
-        </div>
-      </div>
+    <section class="trainers-grid" id="trainers-contenedor">
+      <p>Cargando entrenadores...</p>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Cuerpo Sano — Sistema de Gestión de Gimnasio</p>
   </footer>
+
+  <div id="modal-crear-trainer" class="modal-overlay hidden">
+    <div class="modal-content">
+      
+      <button id="btn-cerrar-modal-trainer" class="modal-close-btn">&times;</button>
+      
+      <h2>Registrar Nuevo Entrenador</h2>
+      <p>Completa todos los datos del profesional.</p>
+      
+      <form id="form-crear-trainer">
+        
+        <div class="form-group">
+          <label for="trainer-nombre">Nombre(s)</label>
+          <input type="text" id="trainer-nombre" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-apellido">Apellido(s)</label>
+          <input type="text" id="trainer-apellido" name="last_name" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-email">Email</label>
+          <input type="email" id="trainer-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-dni">DNI</label>
+          <input type="text" id="trainer-dni" name="dni" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-phone">Teléfono</label>
+          <input type="tel" id="trainer-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-address">Dirección</label>
+          <input type="text" id="trainer-address" name="address" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-nacimiento">Fecha de Nacimiento</label>
+          <input type="date" id="trainer-nacimiento" name="date_of_birth" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-certification">Certificación (ID/Código)</label>
+          <input type="text" id="trainer-certification" name="certification" required>
+        </div>
+        <div class="form-group">
+          <label for="trainer-specialty">Especialidad</label>
+          <select id="trainer-specialty" name="specialty" required>
+            <option value="general">General</option>
+            <option value="strength">Fuerza</option>
+            <option value="cardio">Cardio</option>
+            <option value="yoga">Yoga</option>
+            <option value="pilates">Pilates</option>
+            <option value="crossfit">CrossFit</option>
+            <option value="nutrition">Nutrición</option>
+            <option value="other">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="trainer-expiry">Vencimiento Certificación (Fecha y Hora)</label>
+          <input type="datetime-local" id="trainer-expiry" name="certification_expiry" required>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-trainer" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Guardar Entrenador</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+<div id="modal-editar-trainer" class="modal-overlay hidden">
+    <div class="modal-content">
+      
+      <button id="btn-cerrar-modal-edit-trainer" class="modal-close-btn">&times;</button>
+      
+      <h2>Editar Entrenador</h2>
+      <p>Actualiza los datos del profesional.</p>
+      
+      <form id="form-editar-trainer">
+        
+        <input type="hidden" id="edit-trainer-id" name="id">
+
+        <div class="form-group">
+          <label for="edit-trainer-nombre">Nombre(s)</label>
+          <input type="text" id="edit-trainer-nombre" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-apellido">Apellido(s)</label>
+          <input type="text" id="edit-trainer-apellido" name="last_name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-email">Email</label>
+          <input type="email" id="edit-trainer-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-dni">DNI</label>
+          <input type="text" id="edit-trainer-dni" name="dni" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-phone">Teléfono</label>
+          <input type="tel" id="edit-trainer-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-address">Dirección</label>
+          <input type="text" id="edit-trainer-address" name="address" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-nacimiento">Fecha de Nacimiento</label>
+          <input type="date" id="edit-trainer-nacimiento" name="date_of_birth" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-certification">Certificación (ID/Código)</label>
+          <input type="text" id="edit-trainer-certification" name="certification" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-specialty">Especialidad</label>
+          <select id="edit-trainer-specialty" name="specialty" required>
+            <option value="general">General</option>
+            <option value="strength">Fuerza</option>
+            <option value="cardio">Cardio</option>
+            <option value="yoga">Yoga</option>
+            <option value="pilates">Pilates</option>
+            <option value="crossfit">CrossFit</option>
+            <option value="nutrition">Nutrición</option>
+            <option value="other">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-trainer-expiry">Vencimiento Certificación (Fecha y Hora)</label>
+          <input type="datetime-local" id="edit-trainer-expiry" name="certification_expiry" required>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" id="btn-cancelar-modal-edit-trainer" class="btn btn-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-submit">Guardar Cambios</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <script src="/js/entrenadores.js" defer></script>
 </body>
 </html>
